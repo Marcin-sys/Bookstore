@@ -1,6 +1,6 @@
 package pl.mirocha.marcin.it.book.store.model;
 
-public class Book {
+public class Book implements Cloneable {
     private int id;
     private String title;
     private String author;
@@ -57,6 +57,8 @@ public class Book {
 
     private int quantity;
 
+    public Book() {
+    }
     public Book(int id, String title, String author, String isbn, double price, int quantity) {
         this.id = id;
         this.title = title;
@@ -64,5 +66,17 @@ public class Book {
         this.isbn = isbn;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    @Override
+    public Book clone() {
+        Book book = new Book();
+        book.setId(this.id);
+        book.setTitle(this.title);
+        book.setAuthor(this.author);
+        book.setIsbn(this.isbn);
+        book.setPrice(this.price);
+        book.setQuantity(this.quantity);
+        return book;
     }
 }

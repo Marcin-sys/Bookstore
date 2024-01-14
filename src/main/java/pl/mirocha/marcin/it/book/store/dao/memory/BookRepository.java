@@ -31,7 +31,7 @@ public class BookRepository implements IBookDAO {
     public Book getById(int id) {
         for (Book book : this.books) {
             if (book.getId() == id) {
-                return book;
+                return book.clone();
             }
         }
         return null;
@@ -39,7 +39,11 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public List<Book> getAll() {
-        return this.books;
+        List<Book> result = new ArrayList<>();
+        for (Book book : this.books){
+            result.add(book.clone());
+        }
+        return result;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class BookRepository implements IBookDAO {
         for (Book book : this.books) {
             if (book.getTitle().toLowerCase().contains(pattern.toLowerCase())
                     || book.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
-                result.add(book);
+                result.add(book.clone());
             }
         }
         return result;
