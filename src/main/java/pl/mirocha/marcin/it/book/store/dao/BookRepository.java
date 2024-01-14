@@ -5,6 +5,7 @@ import pl.mirocha.marcin.it.book.store.exceptions.BookAlreadyExistException;
 import pl.mirocha.marcin.it.book.store.model.Book;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -69,15 +70,12 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public void delete(int id) {
-        Book bookToDelete = null;
-        for (Book book : this.books) {
-            if (book.getId() == id) {
-                bookToDelete = book;
-                break;
+        Iterator<Book> iterator = this.books.iterator();
+        while (iterator.hasNext()){
+            Book book = iterator.next();
+            if (book.getId() == id){
+                iterator.remove();
             }
-        }
-        if (bookToDelete != null) {
-            this.books.remove(bookToDelete);
         }
     }
 }
