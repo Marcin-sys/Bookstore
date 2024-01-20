@@ -1,11 +1,11 @@
 #log{
-    wight : 400px;
+    wight : 200px;
     margin: 15px auto;
 }
 
 
 #logo img{
-    wight:400px;
+    wight:200px;
     margin:0;
     padding:0;
 }
@@ -27,6 +27,7 @@
     padding: 5px 10px;
     transition: border, color, background-color 3s;
     cursor: pointer;
+    background-color: white;
 }
 
 .button:hover{
@@ -39,4 +40,25 @@
     wight: 70%;
     margin: 20px auto;
     text-align: center;
+}
+
+.input-field{
+        front-size: 20px;
+        text-decoration: none;
+        border: 2px solid black;
+        border-radius:15px;
+        colo:black;
+        display: display-block;
+        margin: 5px auto;
+        padding: 5px 10px;
+        transition: border, color, background-color 1s;
+        background-color: white;
+        text-align: center;
+        width: 350px;
+}
+
+.input-field:hover{
+    border: 2px solid red;
+    background-color: red;
+    color: white;
 }

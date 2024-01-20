@@ -19,6 +19,11 @@
 
 </div>
 <div id="content">
+    <form action="/filter" method="get">
+        <input type="text" placeholder="Szukaj" class="input-field" name="pattern"
+               style="display: inline-block" th:value="${session.filter}">
+        <input type="submit" VALUE="OK" class="button">
+    </form>
     <div class="book" th:each="book : ${books}">
         <div th:text="${book.title}" class="title"></div>
         <div th:text="${book.author}" class="author"></div>
