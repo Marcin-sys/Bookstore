@@ -64,13 +64,22 @@ public class BookRepository implements IBookDAO {
         if (bookFromDb == null) {
             this.books.add(book);
         } else {
-            throw new BookAlreadyExistException("Book with id: " + book.getId() + " already exist");
+            throw new BookAlreadyExistException("Book with id: " + book.getId()
+                    + " already exist");
         }
     }
 
     @Override
     public void update(Book book) {
-
+        Book bookFromDb = this.getById(book.getId());
+        if (bookFromDb == null){
+            return;
+        }
+        bookFromDb.setTitle(book.getTitle());
+        bookFromDb.setAuthor(book.getAuthor());
+        bookFromDb.setIsbn(book.getIsbn());
+        bookFromDb.setPrice(book.getPrice());
+        bookFromDb.setQuantity(book.getQuantity());
     }
 
     @Override

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/commons.css">
+
 </head>
 <body>
 
@@ -14,6 +15,9 @@
 <div id="menu">
     <a href="/main" class="button">Strona Główna</a>
     <a href="/contact" class="button">Kontakt</a>
+    <a href="/login" class="button" th:if="${session.logged == null || !session.logged}">Zaloguj</a>
+    <a href="/logout" class="button" th:if="${session.logged != null && session.logged}">Wyloguj</a>
+
 </div>
 <div id="content">
     <p> Book Store  </p>

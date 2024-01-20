@@ -2,11 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/commons.css">
-    <link rel="stylesheet" href="/book.css">
+
 </head>
 <body>
+
 <div id="logo">
     <img src="/logo.png">
 </div>
@@ -19,13 +20,11 @@
 
 </div>
 <div id="content">
-    <div class="book" th:each="book : ${books}">
-        <div th:text="${book.title}" class="title"></div>
-        <div th:text="${book.author}" class="author"></div>
-        <div th:text="${'Price: ' + book.price + ' zł'}" class="price"></div>
-        <div th:text="${'ISBN: ' + book.isbn}" class="isbn"></div>
-        <div th:text="${'Available: ' + book.quantity}" class="quantity"></div>
-    </div>
+    <form method="post">
+        <input type="text" placeholder="login" name="login">
+        <input type="text" placeholder="password" name="password">
+        <input type="submit" value="Zaloguj">
+    </form>
 </div>
 </body>
 </html>
