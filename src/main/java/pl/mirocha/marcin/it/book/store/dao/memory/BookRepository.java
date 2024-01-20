@@ -40,7 +40,7 @@ public class BookRepository implements IBookDAO {
     @Override
     public List<Book> getAll() {
         List<Book> result = new ArrayList<>();
-        for (Book book : this.books){
+        for (Book book : this.books) {
             result.add(book.clone());
         }
         return result;
@@ -72,7 +72,7 @@ public class BookRepository implements IBookDAO {
     @Override
     public void update(Book book) {
         Book bookFromDb = this.getById(book.getId());
-        if (bookFromDb == null){
+        if (bookFromDb == null) {
             return;
         }
         bookFromDb.setTitle(book.getTitle());
@@ -85,9 +85,9 @@ public class BookRepository implements IBookDAO {
     @Override
     public void delete(int id) {
         Iterator<Book> iterator = this.books.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Book book = iterator.next();
-            if (book.getId() == id){
+            if (book.getId() == id) {
                 iterator.remove();
                 break;
             }

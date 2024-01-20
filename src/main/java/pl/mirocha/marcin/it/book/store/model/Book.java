@@ -59,6 +59,7 @@ public class Book implements Cloneable {
 
     public Book() {
     }
+
     public Book(int id, String title, String author, String isbn, double price, int quantity) {
         this.id = id;
         this.title = title;

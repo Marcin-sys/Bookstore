@@ -18,15 +18,16 @@ public class CommonController {
     }
 
     @RequestMapping(path = {"/main", "/", "/index"}, method = RequestMethod.GET)
-    public String main(Model model ,HttpSession httpSession) {
-        if (httpSession.getAttribute("filter") instanceof String){
+    public String main(Model model, HttpSession httpSession) {
+        if (httpSession.getAttribute("filter") instanceof String) {
             String pattern = httpSession.getAttribute("filter").toString();
             model.addAttribute("books", this.bookDAO.getByPattern(pattern));
-        }else {
+        } else {
             model.addAttribute("books", this.bookDAO.getAll());
         }
         return "index";
     }
+
     /*     return "redirect:/main";   */
     @RequestMapping(path = "/contact", method = RequestMethod.GET)
     public String contact() {
@@ -35,10 +36,10 @@ public class CommonController {
 
     @RequestMapping(path = "/filter", method = RequestMethod.GET)
     public String filter(@RequestParam String pattern, Model model, HttpSession httpSession) {
-        if (pattern.isEmpty()){
+        if (pattern.isEmpty()) {
             httpSession.removeAttribute("filter");
-        }else {
-            httpSession.setAttribute("filter",pattern);
+        } else {
+            httpSession.setAttribute("filter", pattern);
         }
         return "redirect:/main";
     }

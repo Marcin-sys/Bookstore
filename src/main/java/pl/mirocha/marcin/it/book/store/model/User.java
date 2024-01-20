@@ -69,7 +69,7 @@ public class User {
     }
 
     @Override
-    public User clone(){
+    public User clone() {
         User user = new User();
         user.setId(this.id);
         user.setLogin(this.login);

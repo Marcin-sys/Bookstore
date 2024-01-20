@@ -32,18 +32,18 @@ public class AuthenticationController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam String login,@RequestParam String password,
+    public String login(@RequestParam String login, @RequestParam String password,
                         HttpSession httpSession) {
         try {
             UserValidator.validateLogin(login);
             UserValidator.validatePassword(password);
-        }catch (UserValidationException e){
+        } catch (UserValidationException e) {
             return "redirect:/login";
         }
         User user = this.userDAO.getByLogin(login);
-        if (user != null && user.getPassword().equals(DigestUtils.md5Hex(password))){
+        if (user != null && user.getPassword().equals(DigestUtils.md5Hex(password))) {
             user.setPassword(null);  //wykasowac haslo abo nie bylo wysylane  - bezpieczenstwo
-            httpSession.setAttribute("user",user);
+            httpSession.setAttribute("user", user);
             return "redirect:/main";
         }
         return "redirect:/login";
@@ -52,13 +52,13 @@ public class AuthenticationController {
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession httpSession) {
         httpSession.removeAttribute("user");
-        httpSession.setAttribute("user",null);
+        httpSession.setAttribute("user", null);
         return "redirect:/main";
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-        model.addAttribute("userModel",new RegisterUserDTO());
+        model.addAttribute("userModel", new RegisterUserDTO());
         return "register";
     }
 
@@ -67,13 +67,13 @@ public class AuthenticationController {
         try {
             UserValidator.validateUserDTO(userDTO);
             this.userDAO.save(map(userDTO));
-        } catch (UserAlreadyExistException | UserValidationException e){
+        } catch (UserAlreadyExistException | UserValidationException e) {
             return "redirect:/register";
         }
         return "redirect:/main";
     }
 
-    private User map(RegisterUserDTO userDTO){
+    private User map(RegisterUserDTO userDTO) {
         User user = new User();
 //        user.setId(this.userDAO.getAll().size()+1);  nie potrzeba poniewaz posiadamy UserIdSequence
         user.setName(userDTO.getName());
