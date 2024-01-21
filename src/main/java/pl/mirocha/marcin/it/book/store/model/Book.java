@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
+@Builder
 public class Book implements Cloneable {
     private int id;
     private String title;

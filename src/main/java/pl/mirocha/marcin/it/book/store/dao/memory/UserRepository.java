@@ -18,9 +18,9 @@ public class UserRepository implements IUserDAO {
 
     public UserRepository(UserIdSequence userIdSequence) {
         this.users.add(new User(userIdSequence.getId(), "admin", "0192023a7bbd73250516f069df18b500",
-                "Pan", "administrator", "ADMIN"));
+                "Pan", "administrator", User.Role.ADMIN));
         this.users.add(new User(userIdSequence.getId(), "janusz", "1e6f2ac43951a6721d3d26a379cc7f8b",
-                "Janusz", "Kowalski", "USER"));
+                "Janusz", "Kowalski", User.Role.USER));
         this.userIdSequence = userIdSequence;
     }
 

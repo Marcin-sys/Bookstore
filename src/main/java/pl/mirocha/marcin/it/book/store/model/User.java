@@ -7,13 +7,14 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Builder
 public class User {
     private int id;
     private String login;
     private String password;
     private String name;
     private String surname;
-    private String role;
+    private Role role;
 
     @Override
     public User clone() {
@@ -25,5 +26,9 @@ public class User {
         user.setSurname(this.surname);
         user.setRole(this.role);
         return user;
+    }
+    public enum Role{
+        USER,
+        ADMIN;
     }
 }

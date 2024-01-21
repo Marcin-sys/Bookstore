@@ -80,7 +80,7 @@ public class AuthenticationController {
         user.setSurname(userDTO.getSurname());
         user.setLogin(userDTO.getLogin());
         user.setPassword(DigestUtils.md5Hex(userDTO.getPassword()));
-        user.setRole("USER");
+        user.setRole(User.Role.USER);
         return user;
     }
 }
