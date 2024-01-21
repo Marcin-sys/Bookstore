@@ -4,7 +4,7 @@ function validate() {
     var info = document.getElementById("info");
 
     var loginRegex = /^[a-z0-9]{5,}$/;
-    var passwordRegex = /^([\\w]{4,}\\d[\\w]*)?([\\w]{3,}\\d[\\w]+)?([\\w]{2,}\\d[\\w]{2,})?([\\w]+\\d[\\w]{3,})?([\\w]*\\d[\\w]{4,})?$/;
+    var passwordRegex = /^([\w]{4,}\d[\w]*)?([\w]{3,}\d[\w]+)?([\w]{2,}\d[\w]{2,})?([\w]+\d[\w]{3,})?([\w]*\d[\w]{4,})?$/;
 
 
     var result = true;

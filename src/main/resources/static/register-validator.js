@@ -9,7 +9,7 @@ function validate() {
     var loginRegex = /^[a-z0-9]{5,}$/;
     var nameRegex = /^[A-Z]{1}[a-z]{2,}$/;
     var surnameRegex = /^[A-Z]{1}[a-z]+$/;
-    var passwordRegex = /^([\\w]{4,}\\d[\\w]*)?([\\w]{3,}\\d[\\w]+)?([\\w]{2,}\\d[\\w]{2,})?([\\w]+\\d[\\w]{3,})?([\\w]*\\d[\\w]{4,})?$/;
+    var passwordRegex = /^([\w]{4,}\d[\w]*)?([\w]{3,}\d[\w]+)?([\w]{2,}\d[\w]{2,})?([\w]+\d[\w]{3,})?([\w]*\d[\w]{4,})?$/;
 
     var result = true;
     var infoText = "";

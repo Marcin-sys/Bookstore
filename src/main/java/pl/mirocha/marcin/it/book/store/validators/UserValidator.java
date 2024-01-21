@@ -19,22 +19,21 @@ public class UserValidator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
         //matcher.end();   mozliwosci po kropce
-        if (matcher.matches()) {
+        if (!matcher.matches()) {
             throw new UserValidationException("Name incorrect!");
         }
     }
 
     public static void validateSurName(String surname) {
         String regex = "^[A-Z]{1}[a-z]+$";
-        if (surname.length() < 2 || !Character.isUpperCase(surname.charAt(0))) {
+        if (!surname.matches(regex)) {
             throw new UserValidationException("Surname incorrect!");
         }
     }
 
     public static void validatePassword(String password) {
-        String regex = "^([\\w]{4,}\\d[\\w]*)?([\\w]{3,}\\d[\\w]+)?" +
-                "([\\w]{2,}\\d[\\w]{2,})?([\\w]+\\d[\\w]{3,})?([\\w]*\\d[\\w]{4,})?$";
-        if (password.length() < 5) {
+        String regex = "^([\\w]{4,}\\d[\\w]*)?([\\w]{3,}\\d[\\w]+)?([\\w]{2,}\\d[\\w]{2,})?([\\w]+\\d[\\w]{3,})?([\\w]*\\d[\\w]{4,})?$";
+        if (!password.matches(regex)) {
             throw new UserValidationException("Password too short");
         }
     }
