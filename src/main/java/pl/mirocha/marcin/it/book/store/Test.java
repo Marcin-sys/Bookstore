@@ -1,6 +1,7 @@
 package pl.mirocha.marcin.it.book.store;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import pl.mirocha.marcin.it.book.store.model.Book;
 
 public class Test {
     public static void main(String[] args) {
@@ -9,5 +10,12 @@ public class Test {
 
         String hash = DigestUtils.md5Hex(haslo);
         System.out.println(hash);
+
+        Book book  = new Book();
+        book.setId(1);
+        book.setTitle("cwsd");
+
+        System.out.println(book);
+
     }
 }

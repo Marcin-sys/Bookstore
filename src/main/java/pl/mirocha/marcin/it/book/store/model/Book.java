@@ -1,14 +1,13 @@
 package pl.mirocha.marcin.it.book.store.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 public class Book implements Cloneable {
     private int id;
     private String title;
@@ -16,7 +15,6 @@ public class Book implements Cloneable {
     private String isbn;
     private double price;
     private int quantity;
-
 
     @Override
     public Book clone() {
