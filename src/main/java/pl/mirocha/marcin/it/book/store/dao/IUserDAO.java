@@ -3,12 +3,13 @@ package pl.mirocha.marcin.it.book.store.dao;
 import pl.mirocha.marcin.it.book.store.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserDAO {
 
-    User getById(int id);
+    Optional<User> getById(int id);
 
-    User getByLogin(String login);
+    Optional<User> getByLogin(String login);
 
     List<User> getAll();
 

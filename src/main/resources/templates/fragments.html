@@ -16,6 +16,9 @@
     <a href="/login" class="button" th:if="${session.user == null}">Zaloguj</a>
     <a href="/logout" class="button" th:if="${session.user != null}">Wyloguj</a>
 
+    <a href="/book/add" class="button" th:if="${session.user != null &&
+    session.user.role == T(pl.mirocha.marcin.it.book.store.model.User.Role).ADMIN}">Dodaj Książkę</a>
+
 </div>
 <th:block th:fragment="headers">
     <meta charset="UTF-8">
