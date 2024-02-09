@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository implements IUserDAO {
@@ -27,39 +28,51 @@ public class UserRepository implements IUserDAO {
 
 
     @Override
-    public Optional<User> getById(int id) {
-        for (User user : this.users) {
+    public Optional<User> getById(final int id) {
+/*        for (User user : this.users) {
             if (user.getId() == id) {
                 return Optional.of(user.clone());
             }
         }
-        return Optional.empty();
+        return Optional.empty();*/
+        return this.users.stream()
+                .filter(user -> user.getId() == id)
+                .map(user -> user.clone())
+                .findFirst();
     }
 
     @Override
     public Optional<User> getByLogin(String login) {
-        for (User user : this.users) {
+/*        for (User user : this.users) {
             if (user.getLogin().equals(login)) {
                 return Optional.of(user.clone());
             }
         }
-        return Optional.empty();
+        return Optional.empty();*/
+        return this.users.stream()
+                .filter(user -> user.getLogin() == login)
+                .map(user -> user.clone())
+                .findFirst();
     }
 
     @Override
     public List<User> getAll() {
-        List<User> result = new ArrayList<>();
+/*        List<User> result = new ArrayList<>();
         for (User user : this.users) {
             result.add(user.clone());
         }
-        return result;
+        return result;*/
+
+        return this.users.stream()
+                .map(user -> user.clone())
+                .toList();
     }
 
     @Override
     public void save(User user) {
-        user.setId(this.userIdSequence.getId());
         Optional<User> userBox = this.getByLogin(user.getLogin());
         if (userBox.isEmpty()) {
+            user.setId(this.userIdSequence.getId());
             this.users.add(user);
         } else {
             throw new UserAlreadyExistException("User with this login already Exist");
@@ -68,20 +81,23 @@ public class UserRepository implements IUserDAO {
 
 
     @Override
-    public void delete(int id) {
-        Iterator<User> iterator = this.users.iterator();
+    public void delete(final int id) {
+ /*       Iterator<User> iterator = this.users.iterator();
         while (iterator.hasNext()) {
             User user = iterator.next();
             if (user.getId() == id) {
                 iterator.remove();
                 break;
             }
-        }
+        }*/
+        this.users.stream()
+                .filter(user -> user.getId() == id)
+                .forEach(users -> this.users.remove(users));
     }
 
     @Override
-    public void update(User user) {
-        Optional<User> userBox = this.getById(user.getId());
+    public void update(final User user) {
+/*        Optional<User> userBox = this.getById(user.getId());
         if (userBox.isEmpty()) {
             return;
         }
@@ -90,7 +106,17 @@ public class UserRepository implements IUserDAO {
         userFromDB.setSurname(user.getSurname());
         userFromDB.setLogin(user.getLogin());
         userFromDB.setPassword(user.getPassword());
-        userFromDB.setRole(user.getRole());
+        userFromDB.setRole(user.getRole());*/
+        this.users.stream()
+                .filter(u -> u.getId() == user.getId())
+                .forEach(u -> {
+                    u.setName(user.getName());
+                    u.setSurname(user.getSurname());
+                    u.setLogin(user.getLogin());
+                    u.setPassword(user.getPassword());
+                    u.setRole(user.getRole());
+                });
+
     }
 
 }

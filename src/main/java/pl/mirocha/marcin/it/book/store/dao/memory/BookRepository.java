@@ -6,7 +6,6 @@ import pl.mirocha.marcin.it.book.store.exceptions.BookAlreadyExistException;
 import pl.mirocha.marcin.it.book.store.model.Book;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,51 +30,80 @@ public class BookRepository implements IBookDAO {
     }
 
     @Override
-    public Optional<Book> getById(int id){
-        for (Book book : this.books) {
+    public Optional<Book> getById(final int id) {
+/*        for (Book book : this.books) {
             if (book.getId() == id) {
                 return Optional.of(book.clone());
             }
         }
-        return Optional.empty();
+        return Optional.empty();*/
+
+        return this.books.stream()
+                .filter(book -> book.getId() == id)
+                .map(book -> book.clone())
+                .findFirst();
     }
 
     @Override
     public List<Book> getAll() {
-        List<Book> result = new ArrayList<>();
+/*        List<Book> result = new ArrayList<>();
         for (Book book : this.books) {
             result.add(book.clone());
         }
-        return result;
+        return result;*/
+
+        return this.books.stream()
+                .map(book -> book.clone())
+                .toList();
     }
 
     @Override
-    public List<Book> getByPattern(String pattern) {
-        List<Book> result = new ArrayList<>();
+    public List<Book> getByPattern(final String pattern) {
+/*        List<Book> result = new ArrayList<>();
         for (Book book : this.books) {
             if (book.getTitle().toLowerCase().contains(pattern.toLowerCase())
                     || book.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
                 result.add(book.clone());
             }
         }
-        return result;
+        return result;*/
+
+        return this.books.stream()
+                .filter(book -> matchToPattern(book, pattern))
+                .map(book -> book.clone())
+                .toList();
+
+    }
+    private boolean matchToPattern(Book book, String pattern) {
+        return book.getTitle().toLowerCase().contains(pattern.toLowerCase())
+                || book.getAuthor().toLowerCase().contains(pattern.toLowerCase());
     }
 
     @Override
-    public void save(Book book) {
-        book.setId(bookIdSequence.getId());
-        for (Book bookFromDb : this.books) {
+    public void save(final Book book) {
+/*        for (Book bookFromDb : this.books) {
             if (bookFromDb.getIsbn().equals(book.getIsbn())) {
                 throw new BookAlreadyExistException("Book with isbn: " + book.getIsbn()
                         + " already exist");
             }
         }
+        book.setId(bookIdSequence.getId());
+        this.books.add(book);*/
+
+        Optional<Book> bookFromDB = this.books.stream()
+                .filter(book1 -> book1.getIsbn().equals(book.getIsbn()))
+                .findFirst();
+        if (bookFromDB.isPresent()){
+            throw new BookAlreadyExistException("Book with isbn: " + book.getIsbn()
+                    + " already exist");
+        }
+        book.setId(bookIdSequence.getId());
         this.books.add(book);
     }
 
     @Override
-    public void update(Book book) {
-        for (Book bookFromDb : this.books) {
+    public void update(final Book book) {
+/*        for (Book bookFromDb : this.books) {
             if (bookFromDb.getId() == book.getId()) {
                 bookFromDb.setTitle(book.getTitle());
                 bookFromDb.setAuthor(book.getAuthor());
@@ -84,18 +112,30 @@ public class BookRepository implements IBookDAO {
                 bookFromDb.setQuantity(book.getQuantity());
                 return;
             }
-        }
+        }*/
+        this.books.stream()
+                .filter(book1 -> book1.getId() == book.getId())
+                .forEach(book1 -> {
+                    book1.setTitle(book.getTitle());
+                    book1.setAuthor(book.getAuthor());
+                    book1.setIsbn(book.getIsbn());
+                    book1.setPrice(book.getPrice());
+                    book1.setQuantity(book.getQuantity());
+                });
     }
 
     @Override
-    public void delete(int id) {
-        Iterator<Book> iterator = this.books.iterator();
+    public void delete(final int id) {
+/*        Iterator<Book> iterator = this.books.iterator();
         while (iterator.hasNext()) {
             Book book = iterator.next();
             if (book.getId() == id) {
                 iterator.remove();
                 break;
             }
-        }
+        }*/
+        this.books.stream()
+                .filter(book -> book.getId() == id)
+                .forEach(book -> this.books.remove(book));
     }
 }
