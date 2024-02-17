@@ -20,6 +20,7 @@
         <div th:text="${'Price: ' + book.price + ' zł'}" class="price"></div>
         <div th:text="${'ISBN: ' + book.isbn}" class="isbn"></div>
         <div th:text="${'Available: ' + book.quantity}" class="quantity"></div>
+        <a th:href="@{/cart/add/{id}(id=${book.id})}" th:if="${session.user != null}" >Dodaj do koszyka</a>
         <a th:href="@{/book/update/{id}(id=${book.id})}" th:if="${session.user != null &&
     session.user.role == T(pl.mirocha.marcin.it.book.store.model.User.Role).ADMIN}">Edit</a>
     </div>

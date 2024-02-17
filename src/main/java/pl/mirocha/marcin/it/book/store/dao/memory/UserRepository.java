@@ -6,10 +6,8 @@ import pl.mirocha.marcin.it.book.store.exceptions.UserAlreadyExistException;
 import pl.mirocha.marcin.it.book.store.model.User;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository implements IUserDAO {
@@ -37,7 +35,7 @@ public class UserRepository implements IUserDAO {
         return Optional.empty();*/
         return this.users.stream()
                 .filter(user -> user.getId() == id)
-                .map(user -> user.clone())
+                .map(User::clone)
                 .findFirst();
     }
 
@@ -50,8 +48,8 @@ public class UserRepository implements IUserDAO {
         }
         return Optional.empty();*/
         return this.users.stream()
-                .filter(user -> user.getLogin() == login)
-                .map(user -> user.clone())
+                .filter(user -> user.getLogin().equals(login))
+                .map(User::clone)
                 .findFirst();
     }
 
@@ -64,19 +62,18 @@ public class UserRepository implements IUserDAO {
         return result;*/
 
         return this.users.stream()
-                .map(user -> user.clone())
+                .map(User::clone)
                 .toList();
     }
 
     @Override
     public void save(User user) {
-        Optional<User> userBox = this.getByLogin(user.getLogin());
-        if (userBox.isEmpty()) {
-            user.setId(this.userIdSequence.getId());
-            this.users.add(user);
-        } else {
-            throw new UserAlreadyExistException("User with this login already Exist");
+        if(this.getByLogin(user.getLogin()).isPresent()) {
+            throw new UserAlreadyExistException(
+                    "User with login: " + user.getLogin() + " already exist");
         }
+        user.setId(this.userIdSequence.getId());
+        this.users.add(user);
     }
 
 
@@ -92,7 +89,7 @@ public class UserRepository implements IUserDAO {
         }*/
         this.users.stream()
                 .filter(user -> user.getId() == id)
-                .forEach(users -> this.users.remove(users));
+                .forEach(this.users::remove);
     }
 
     @Override
@@ -115,8 +112,8 @@ public class UserRepository implements IUserDAO {
                     u.setLogin(user.getLogin());
                     u.setPassword(user.getPassword());
                     u.setRole(user.getRole());
+                    u.getCart().clear();
+                    u.getCart().addAll(user.getCart());
                 });
-
     }
-
 }

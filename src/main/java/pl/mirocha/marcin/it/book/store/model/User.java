@@ -2,6 +2,9 @@ package pl.mirocha.marcin.it.book.store.model;
 
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,6 +18,7 @@ public class User {
     private String name;
     private String surname;
     private Role role;
+    private final Set<Position> cart = new HashSet<>();
 
     @Override
     public User clone() {

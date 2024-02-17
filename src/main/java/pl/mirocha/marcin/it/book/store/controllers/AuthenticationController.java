@@ -15,8 +15,6 @@ import pl.mirocha.marcin.it.book.store.validators.UserValidator;
 
 @Controller
 public class AuthenticationController {
-
-
     private final IAuthenticationService authenticationService;
 
     public AuthenticationController(IAuthenticationService authenticationService) {
