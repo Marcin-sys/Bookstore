@@ -30,23 +30,24 @@ public class CartService implements ICartService {
 
     @Override
     public void addBook(final int bookId) {
-        Optional<Book> bookBox =this.bookDAO.getById(bookId);
+        final Optional<Book> bookBox =this.bookDAO.getById(bookId);
         if(bookBox.isEmpty()){
             return;
         }
-        User user = (User) this.httpSession.getAttribute("user");
-        Optional<Position> position = user.getCart().stream()
+        final User user = (User) this.httpSession.getAttribute("user");
+        user.getCart().stream()
                 .filter(p -> p.getBook().getId() == bookId)
-                .findFirst();
-        if (position.isPresent()){
-            position.get().incrementQuantity();
-        }else {
-            Position newPosition = new Position();
-            newPosition.setBook(bookBox.get());
-            newPosition.setQuantity(1);
+                .findFirst()
+                .ifPresentOrElse(
+                        Position::incrementQuantity,  //jesli bedzie present to robi tą linijke
+                        ()->{   //jesli nie bedzie prezent to robi to ponizej
+                            Position newPosition = new Position();
+                            newPosition.setBook(bookBox.get());
+                            newPosition.setQuantity(1);
+                            user.getCart().add(newPosition);
+                        }
+                );
 
-            user.getCart().add(newPosition);
-        }
         this.userDAO.update(user);
     }
     @Override

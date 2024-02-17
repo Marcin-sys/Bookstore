@@ -25,10 +25,16 @@ public class AuthenticationService implements IAuthenticationService {
     @Override
     public void login(String login, String password) {
         Optional<User> userBox = this.userDAO.getByLogin(login);
-        if (userBox.isPresent() && userBox.get().getPassword().equals(DigestUtils.md5Hex(password))) {
+        userBox.ifPresent(user -> {
+            if (userBox.get().getPassword().equals(DigestUtils.md5Hex(password))){
+                user.setPassword(null);
+                httpSession.setAttribute("user", user);
+            }
+        });
+/*        if (userBox.isPresent() && userBox.get().getPassword().equals(DigestUtils.md5Hex(password))) {
             userBox.get().setPassword(null);  //wykasowac haslo aby nie bylo wysylane  - bezpieczenstwo
             httpSession.setAttribute("user", userBox.get());
-        }
+        }*/
     }
 
     @Override
