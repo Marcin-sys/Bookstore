@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.mirocha.marcin.it.book.store.services.ICartService;
 
 @Controller
+@RequestMapping(path = "/cart")
 public class CartController {
     private  final ICartService cartService;
 
@@ -14,9 +15,22 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @RequestMapping(path = "/cart/add/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/add/{id}", method = RequestMethod.GET)
     public String add(@PathVariable int id){
         cartService.addBook(id);
         return "redirect:/main";
     }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public String cart(){
+        return "cart";
+    }
+
+    @RequestMapping(path = "/remove/{bookId}", method = RequestMethod.GET)
+    public String remove(@PathVariable int bookId){
+        this.cartService.removeBook(bookId);
+        return "redirect:/cart";
+    }
+
+
 }

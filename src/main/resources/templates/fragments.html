@@ -13,6 +13,8 @@
 <div id="menu" th:fragment="menu">
     <a href="/main" class="button">Strona Główna</a>
     <a href="/contact" class="button">Kontakt</a>
+    <a href="/cart" class="button" th:if="${session.user != null}">Koszyk</a>
+    <a href="/order" class="button" th:if="${session.user != null}">Zamówienia</a>
     <a href="/login" class="button" th:if="${session.user == null}">Zaloguj</a>
     <a href="/logout" class="button" th:if="${session.user != null}">Wyloguj</a>
 

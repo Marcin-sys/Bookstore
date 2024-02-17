@@ -20,6 +20,12 @@ public class User {
     private Role role;
     private final Set<Position> cart = new HashSet<>();
 
+    public double total(){
+        double sum = this.cart.stream()
+                    .mapToDouble(i -> i.getBook().getPrice() * i.getQuantity())
+                    .sum();
+        return (int) (sum *100)/100.0;
+    }
     @Override
     public User clone() {
         User user = new User();
@@ -29,6 +35,9 @@ public class User {
         user.setName((this.name));
         user.setSurname(this.surname);
         user.setRole(this.role);
+        user.getCart().addAll(this.getCart().stream()
+                .map(Position::clone)
+                .toList());
         return user;
     }
     public enum Role{

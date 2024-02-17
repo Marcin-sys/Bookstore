@@ -110,7 +110,9 @@ public class UserRepository implements IUserDAO {
                     u.setName(user.getName());
                     u.setSurname(user.getSurname());
                     u.setLogin(user.getLogin());
-                    u.setPassword(user.getPassword());
+                    if (user.getPassword() != null) {
+                        u.setPassword(user.getPassword());
+                    }
                     u.setRole(user.getRole());
                     u.getCart().clear();
                     u.getCart().addAll(user.getCart());

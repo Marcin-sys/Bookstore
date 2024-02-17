@@ -10,7 +10,9 @@ import pl.mirocha.marcin.it.book.store.model.Position;
 import pl.mirocha.marcin.it.book.store.model.User;
 import pl.mirocha.marcin.it.book.store.services.ICartService;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CartService implements ICartService {
@@ -29,16 +31,13 @@ public class CartService implements ICartService {
     @Override
     public void addBook(final int bookId) {
         Optional<Book> bookBox =this.bookDAO.getById(bookId);
-
         if(bookBox.isEmpty()){
             return;
         }
-
         User user = (User) this.httpSession.getAttribute("user");
         Optional<Position> position = user.getCart().stream()
                 .filter(p -> p.getBook().getId() == bookId)
                 .findFirst();
-
         if (position.isPresent()){
             position.get().incrementQuantity();
         }else {
@@ -49,5 +48,12 @@ public class CartService implements ICartService {
             user.getCart().add(newPosition);
         }
         this.userDAO.update(user);
+    }
+    @Override
+    public void removeBook(final int bookID) {
+        final Set<Position> positions = ((User) this.httpSession.getAttribute("user")).getCart();
+        new HashSet<> (positions).stream()
+                .filter(p->p.getBook().getId() == bookID)
+                .forEach(positions::remove);
     }
 }

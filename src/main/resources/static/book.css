@@ -11,6 +11,11 @@
     background-color: #ffc2c2;
 }
 
+.book a {
+    display: inline-block;
+    margin: 5px 40px 5px 40px;
+}
+
 .book .title {
     font-size: 40px;
     margin: 5px;
