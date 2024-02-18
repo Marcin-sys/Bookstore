@@ -13,10 +13,10 @@ import java.util.Optional;
 public class BookRepository implements IBookDAO {
 
     private final List<Book> books = new ArrayList<>();
-    private final BookIdSequence bookIdSequence;
+    private final IdSequence idSequence;
 
-    public BookRepository(BookIdSequence bookIdSequence) {
-        this.bookIdSequence = bookIdSequence;
+    public BookRepository(IdSequence bookIdSequence) {
+        this.idSequence = bookIdSequence;
         this.books.add(new Book(bookIdSequence.getId(), "Java. Podręcznik na start", "Krzysztof Krocz",
                 "978-83-283-9783-5", 44.85, 10));
         this.books.add(new Book(bookIdSequence.getId(), "Java. Kompendium programisty. Wydanie XII",
@@ -97,7 +97,7 @@ public class BookRepository implements IBookDAO {
             throw new BookAlreadyExistException("Book with isbn: " + book.getIsbn()
                     + " already exist");
         }
-        book.setId(bookIdSequence.getId());
+        book.setId(idSequence.getId());
         this.books.add(book);
     }
 

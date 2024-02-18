@@ -14,14 +14,14 @@ public class UserRepository implements IUserDAO {
 
     private final List<User> users = new ArrayList<>();
 
-    private final UserIdSequence userIdSequence;
+    private final IdSequence idSequence;
 
-    public UserRepository(UserIdSequence userIdSequence) {
-        this.users.add(new User(userIdSequence.getId(), "admin", "0192023a7bbd73250516f069df18b500",
+    public UserRepository(IdSequence idSequence) {
+        this.users.add(new User(idSequence.getId(), "admin", "0192023a7bbd73250516f069df18b500",
                 "Pan", "administrator", User.Role.ADMIN));
-        this.users.add(new User(userIdSequence.getId(), "janusz", "1e6f2ac43951a6721d3d26a379cc7f8b",
+        this.users.add(new User(idSequence.getId(), "janusz", "1e6f2ac43951a6721d3d26a379cc7f8b",
                 "Janusz", "Kowalski", User.Role.USER));
-        this.userIdSequence = userIdSequence;
+        this.idSequence = idSequence;
     }
 
 
@@ -72,7 +72,7 @@ public class UserRepository implements IUserDAO {
             throw new UserAlreadyExistException(
                     "User with login: " + user.getLogin() + " already exist");
         }
-        user.setId(this.userIdSequence.getId());
+        user.setId(this.idSequence.getId());
         this.users.add(user);
     }
 

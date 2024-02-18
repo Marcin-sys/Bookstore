@@ -12,12 +12,12 @@ public class BookValidator {
         }
     }
     public static void validateAuthor(String author){
-        if (!author.matches("^.+$")) {  //TODO regex
+        if (!author.matches("^[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?(,(\\ )?[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?)*$")) {  //TODO regex
             throw new UserValidationException("Incorrect title");
         }
     }
     public static void validateIsbn(String isbn){
-        if (!isbn.matches("^.+$")) {  //TODO regex
+        if (!isbn.matches("^(978|979)-[0-9]{2}-[0-9]{2,6}-[0-9]{1,5}-[0-9]$")) {  //TODO regex
             throw new UserValidationException("Incorrect title");
         }
     }

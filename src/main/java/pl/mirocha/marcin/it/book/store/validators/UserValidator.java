@@ -15,7 +15,7 @@ public class UserValidator {
     }
 
     public static void validateName(String name) {
-        String regex = "^[A-Z]{1}[a-z]{2,}$";
+        String regex = "^[A-Z][a-z]{2,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(name);
         //matcher.end();   mozliwosci po kropce
@@ -25,7 +25,7 @@ public class UserValidator {
     }
 
     public static void validateSurName(String surname) {
-        String regex = "^[A-Z]{1}[a-z]+$";
+        String regex = "^[A-Z][a-z]+([-\\ ][A-Z][a-z]+)?$";
         if (!surname.matches(regex)) {
             throw new UserValidationException("Surname incorrect!");
         }

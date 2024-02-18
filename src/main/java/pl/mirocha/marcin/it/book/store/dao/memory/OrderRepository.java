@@ -10,12 +10,12 @@ import java.util.Optional;
 
 @Repository
 public class OrderRepository implements IOrderDAO {
-    private final OrderIdSequence orderIdSequence;
+    private final IdSequence idSequence;
 
     private final List<Order> orders = new ArrayList<>();
 
-    public OrderRepository(OrderIdSequence orderIdSequence) {
-        this.orderIdSequence = orderIdSequence;
+    public OrderRepository(IdSequence orderIdSequence) {
+        this.idSequence = orderIdSequence;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class OrderRepository implements IOrderDAO {
 
     @Override
     public void save(Order order) {
-        order.setId(this.orderIdSequence.getId());
+        order.setId(this.idSequence.getId());
         this.orders.add(order);
     }
 
