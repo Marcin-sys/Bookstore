@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public class OrderRepository implements IOrderDAO {
     private final IdSequence idSequence;
 

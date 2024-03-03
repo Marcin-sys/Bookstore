@@ -1,8 +1,11 @@
 package pl.mirocha.marcin.it.book.store.services.impl;
 
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.mirocha.marcin.it.book.store.dao.IBookDAO;
 import pl.mirocha.marcin.it.book.store.model.Book;
+import pl.mirocha.marcin.it.book.store.model.User;
 import pl.mirocha.marcin.it.book.store.services.IBookService;
 
 import java.util.List;
@@ -11,7 +14,10 @@ import java.util.Optional;
 @Service
 public class BookService implements IBookService {
 
+    @Autowired
+    HttpSession httpSession;
     private final IBookDAO bookDAO;
+
 
     public BookService(IBookDAO iBookDAO) {
         this.bookDAO = iBookDAO;
@@ -19,6 +25,7 @@ public class BookService implements IBookService {
 
     @Override
     public void save(Book book) {
+        book.setCreator((User) this.httpSession.getAttribute("user"));
         this.bookDAO.save(book);
     }
 

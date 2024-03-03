@@ -64,7 +64,6 @@ public class OrderService implements IOrderService {
 
           //czyszczenie carta usera
         user.getCart().clear();
-        this.userDAO.update(user);
     }
 
     @Override

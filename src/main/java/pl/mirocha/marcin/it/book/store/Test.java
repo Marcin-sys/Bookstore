@@ -6,16 +6,10 @@ import pl.mirocha.marcin.it.book.store.model.Book;
 public class Test {
     public static void main(String[] args) {
 //        String seed = "hq_6#%r8rPJ)zoZaIvV6X@HqMVaz;C7wNM39Rl]{hCE!YF]8Xo";
-        String haslo = "admin123";
+        String haslo = "janusz123";
 
         String hash = DigestUtils.md5Hex(haslo);
         System.out.println(hash);
-
-        Book book  = new Book();
-        book.setId(1);
-        book.setTitle("cwsd");
-
-        System.out.println(book);
 
     }
 }
