@@ -1,6 +1,6 @@
-.order{
-    width:100%
-    front-size: 20px;
+.order {
+    width: 100%;
+    font-size: 20px;
     text-align: center;
     margin: 10px auto;
     border: 1px solid black;
@@ -13,16 +13,17 @@
 }
 
 .id, .date, .status, .total {
-    width: 24%
+    width: 24%;
 }
 
 .positions {
     display: none !important;
     width: 80%;
     margin: 5px auto;
-
 }
 
-.order:hover .positions{
+.positions-show {
     display: block !important;
+    width: 80%;
+    margin: 5px auto;
 }

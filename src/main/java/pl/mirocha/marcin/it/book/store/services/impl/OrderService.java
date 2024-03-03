@@ -12,6 +12,7 @@ import pl.mirocha.marcin.it.book.store.model.Order;
 import pl.mirocha.marcin.it.book.store.model.User;
 import pl.mirocha.marcin.it.book.store.services.IOrderService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -57,6 +58,7 @@ public class OrderService implements IOrderService {
         order.setTotal(user.total());
         order.setStatus(Order.Status.NEW);
         order.getPositions().addAll(user.getCart());
+        order.setDateTime(LocalDateTime.now());
 
         this.orderDAO.save(order);  //save order
 

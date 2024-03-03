@@ -16,6 +16,16 @@ public class Book implements Cloneable {
     private String isbn;
     private double price;
     private int quantity;
+    private User creator;
+
+    public Book(int id, String title, String author, String isbn, double price, int quantity) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     @Override
     public Book clone() {

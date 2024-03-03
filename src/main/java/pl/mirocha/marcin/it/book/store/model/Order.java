@@ -2,6 +2,8 @@ package pl.mirocha.marcin.it.book.store.model;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,12 +15,16 @@ import java.util.Set;
 @Builder
 public class Order implements Cloneable{
     private int id;
-    // private data;
+    private LocalDateTime dateTime;
     private Status status;
     private double total;
     private User user;
     private final Set<Position> positions = new HashSet<>();
 
+    public String getFormattedDate(){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return this.dateTime.format(dateTimeFormatter);
+    }
     public enum Status{
         NEW,
         PAID,
