@@ -36,7 +36,7 @@ public class AuthenticationController {
             return "redirect:/login";
         }
         this.authenticationService.login(login, password);
-        if (httpSession.getAttribute("user") != null) {
+        if(httpSession.getAttribute("user") != null) {
             return "redirect:/main";
         }
         return "redirect:/login";

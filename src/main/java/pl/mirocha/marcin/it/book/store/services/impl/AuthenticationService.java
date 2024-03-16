@@ -23,7 +23,7 @@ public class AuthenticationService implements IAuthenticationService {
     @Override
     public void login(String login, String password) {
         this.userDAO.getByLogin(login).ifPresent(user -> {
-            if (user.getPassword().equals(DigestUtils.md5Hex(password))){
+            if(user.getPassword().equals(DigestUtils.md5Hex(password))) {
                 user.setPassword(null);
                 httpSession.setAttribute("user", user);
             }
@@ -39,6 +39,7 @@ public class AuthenticationService implements IAuthenticationService {
     public void register(RegisterUserDTO userDTO) {
         this.userDAO.save(map(userDTO));
     }
+
     private User map(RegisterUserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
@@ -46,6 +47,7 @@ public class AuthenticationService implements IAuthenticationService {
         user.setLogin(userDTO.getLogin());
         user.setPassword(DigestUtils.md5Hex(userDTO.getPassword()));
         user.setRole(User.Role.USER);
+
         return user;
     }
 }

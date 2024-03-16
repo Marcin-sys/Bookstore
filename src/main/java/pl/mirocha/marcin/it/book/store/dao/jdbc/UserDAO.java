@@ -5,6 +5,7 @@ import pl.mirocha.marcin.it.book.store.dao.IUserDAO;
 import pl.mirocha.marcin.it.book.store.model.User;
 
 import java.sql.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,10 +47,12 @@ public class UserDAO implements IUserDAO {
         try {
             String sql = "SELECT * FROM tuser WHERE login = ?";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,login);
+            preparedStatement.setString(1, login);
+
             ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()){
-                return Optional.of( new User(
+            if(rs.next()) {
+                System.out.println("robimy usera");
+                return Optional.of(new User(
                         rs.getInt("id"),
                         rs.getString("login"),
                         rs.getString("password"),
@@ -58,8 +61,8 @@ public class UserDAO implements IUserDAO {
                         User.Role.valueOf(rs.getString("role"))
                 ));
             }
-        }catch (SQLException e){
-            System.out.println("getting user by Id error");
+        } catch (SQLException e) {
+            System.out.println("Get user by login error !");
         }
         return Optional.empty();
     }
@@ -70,19 +73,20 @@ public class UserDAO implements IUserDAO {
         try {
             String sql = "SELECT * FROM tuser;";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                 result.add(new User(
+            while (rs.next()) {
+                result.add(new User(
                         rs.getInt("id"),
                         rs.getString("login"),
                         rs.getString("password"),
                         rs.getString("name"),
                         rs.getString("surname"),
                         User.Role.valueOf(rs.getString("role"))
-                 ));
+                ));
             }
         } catch (SQLException e) {
-            System.out.println("error in get all users");;
+            System.out.println("Get all users error !");
         }
         return result;
     }
@@ -90,22 +94,20 @@ public class UserDAO implements IUserDAO {
     @Override
     public void save(User user) {
         try {
-            String sql = "INSERT INTO tuser (login,password,name,surname,role) VALUES (?,?,?,?,?)";
-            PreparedStatement preparedStatement = this.connection.prepareStatement
-                    (sql, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1,user.getLogin());
-            preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getName());
-            preparedStatement.setString(4,user.getSurname());
-            preparedStatement.setString(5,user.getRole().toString());
+            String sql = "INSERT INTO tuser (login, password, name, surname, role) VALUES (?,?,?,?,?)";
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getName());
+            preparedStatement.setString(4, user.getSurname());
+            preparedStatement.setString(5, user.getRole().name());
 
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.next();
             user.setId(rs.getInt(1));
-
         } catch (SQLException e) {
-            System.out.println("Error with save user");
+            System.out.println("Save user error !");
         }
     }
 
@@ -114,31 +116,29 @@ public class UserDAO implements IUserDAO {
         try {
             String sql = "DELETE FROM tuser WHERE id = ?";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
+            preparedStatement.setInt(1, id);
 
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
-            System.out.println("Error with deleting user");
+            System.out.println("Delete user error !");
         }
-
     }
 
     @Override
     public void update(User user) {
         try {
-            String sql = "UPDATE tuser SET login =? , password = ?, name =?, surname=?, role=? WHERE id =?";
+            String sql = "UPDATE tuser SET login = ?, password = ?, name = ?, surname = ?, role =? WHERE id = ?";
             PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
-            preparedStatement.setString(1,user.getLogin());
-            preparedStatement.setString(2,user.getPassword());
-            preparedStatement.setString(3,user.getName());
-            preparedStatement.setString(4,user.getSurname());
-            preparedStatement.setString(5,user.getRole().toString());
-            preparedStatement.setInt(6,user.getId());
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getName());
+            preparedStatement.setString(4, user.getSurname());
+            preparedStatement.setString(5, user.getRole().name());
+            preparedStatement.setInt(6, user.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("update user error!");
+            System.out.println("Update user error !");
         }
     }
 }

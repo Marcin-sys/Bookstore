@@ -12,6 +12,6 @@ public class AppConfiguration {
     @Bean
     public Connection connection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
     }
 }
