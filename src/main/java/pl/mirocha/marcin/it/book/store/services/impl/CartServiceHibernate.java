@@ -13,8 +13,8 @@ import pl.mirocha.marcin.it.book.store.services.ICartService;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
-public class CartService implements ICartService {
+@Service
+public class CartServiceHibernate implements ICartService {
 
     @Autowired
     HttpSession httpSession;
@@ -22,7 +22,7 @@ public class CartService implements ICartService {
     private IBookDAO bookDAO;
     private IUserDAO userDAO;
 
-    public CartService(IBookDAO bookDAO, IUserDAO userDAO) {
+    public CartServiceHibernate(IBookDAO bookDAO, IUserDAO userDAO) {
         this.bookDAO = bookDAO;
         this.userDAO = userDAO;
     }
@@ -46,12 +46,11 @@ public class CartService implements ICartService {
                             user.getCart().add(newPosition);
                         }
                 );
-        this.userDAO.update(user);
     }
     @Override
     public void removeBook(final int bookID) {
         final Set<Position> positions = ((User) this.httpSession.getAttribute("user")).getCart();
-        new HashSet<> (positions).stream()
+        new HashSet<>(positions).stream()
                 .filter(p->p.getBook().getId() == bookID)
                 .forEach(positions::remove);
     }

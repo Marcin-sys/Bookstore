@@ -1,6 +1,5 @@
 package pl.mirocha.marcin.it.book.store.dao.jdbc;
 
-import org.springframework.stereotype.Repository;
 import pl.mirocha.marcin.it.book.store.dao.IUserDAO;
 import pl.mirocha.marcin.it.book.store.model.User;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public class UserDAO implements IUserDAO {
 
     private final Connection connection;

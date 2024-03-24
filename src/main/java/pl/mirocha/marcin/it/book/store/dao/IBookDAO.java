@@ -12,9 +12,15 @@ public interface IBookDAO {
 
     List<Book> getByPattern(String pattern);
 
+    @Deprecated
     void save(Book book);
 
+    @Deprecated
     void update(Book book);
+
+    default void persist(Book book) {
+        throw new UnsupportedOperationException();
+    }
 
     void delete(int id);
 }

@@ -1,5 +1,6 @@
 package pl.mirocha.marcin.it.book.store.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,8 +9,12 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
+@Entity(name = "tposition")
 public class Position implements Cloneable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne(cascade = {},fetch = FetchType.EAGER)
     private Book book;
     private int quantity;
 

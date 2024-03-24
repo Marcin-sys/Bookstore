@@ -10,10 +10,13 @@ public interface IOrderDAO {
 
     List<Order> getAll();
 
-
+    @Deprecated
     void save(Order order);
-
+    @Deprecated
     void update(Order order);
+    default void persist(Order order){
+        throw new UnsupportedOperationException();
+    }
 
     void delete(int id);
 

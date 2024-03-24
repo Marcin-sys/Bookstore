@@ -1,6 +1,5 @@
 package pl.mirocha.marcin.it.book.store.dao.jdbc;
 
-import org.springframework.stereotype.Repository;
 import pl.mirocha.marcin.it.book.store.dao.IOrderDAO;
 import pl.mirocha.marcin.it.book.store.dao.IPositionDAO;
 import pl.mirocha.marcin.it.book.store.dao.IUserDAO;
@@ -11,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@Repository
+
 public class OrderDAO implements IOrderDAO {
 
     private final Connection connection;

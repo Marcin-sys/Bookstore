@@ -1,9 +1,7 @@
 package pl.mirocha.marcin.it.book.store.dao.jdbc;
 
-import org.springframework.stereotype.Repository;
 import pl.mirocha.marcin.it.book.store.dao.IBookDAO;
 import pl.mirocha.marcin.it.book.store.dao.IPositionDAO;
-import pl.mirocha.marcin.it.book.store.model.Book;
 import pl.mirocha.marcin.it.book.store.model.Position;
 
 import java.sql.Connection;
@@ -12,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-@Repository
+
 public class PositionDAO implements IPositionDAO {
 
     private final Connection connection;

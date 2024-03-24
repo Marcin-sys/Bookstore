@@ -1,6 +1,5 @@
 package pl.mirocha.marcin.it.book.store.dao.memory;
 
-import org.springframework.stereotype.Repository;
 import pl.mirocha.marcin.it.book.store.dao.IBookDAO;
 import pl.mirocha.marcin.it.book.store.exceptions.BookAlreadyExistException;
 import pl.mirocha.marcin.it.book.store.model.Book;

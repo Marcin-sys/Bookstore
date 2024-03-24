@@ -4,8 +4,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.mirocha.marcin.it.book.store.dao.IBookDAO;
+import pl.mirocha.marcin.it.book.store.dao.IUserDAO;
 import pl.mirocha.marcin.it.book.store.model.Book;
 import pl.mirocha.marcin.it.book.store.model.User;
+import pl.mirocha.marcin.it.book.store.model.dto.rest.BookDTO;
 import pl.mirocha.marcin.it.book.store.services.IBookService;
 
 import java.util.List;
@@ -17,10 +19,12 @@ public class BookService implements IBookService {
     @Autowired
     HttpSession httpSession;
     private final IBookDAO bookDAO;
+    private final IUserDAO userDAO;
 
 
-    public BookService(IBookDAO iBookDAO) {
-        this.bookDAO = iBookDAO;
+    public BookService(IBookDAO bookDAO, IUserDAO userDAO) {
+        this.bookDAO = bookDAO;
+        this.userDAO = userDAO;
     }
 
     @Override
@@ -41,6 +45,14 @@ public class BookService implements IBookService {
     }
 
     @Override
+    public BookDTO update(int id, BookDTO bookDTO) {
+        Book book = bookDTO.toBook(this.userDAO);
+        book.setId(id);
+        this.bookDAO.persist(book);
+        return new BookDTO(book);
+    }
+
+    @Override
     public List<Book> getByPattern(String pattern) {
         return this.bookDAO.getByPattern(pattern);
     }
@@ -48,5 +60,12 @@ public class BookService implements IBookService {
     @Override
     public List<Book> getAll() {
         return this.bookDAO.getAll();
+    }
+
+    @Override
+    public BookDTO save(BookDTO bookDTO) {
+        Book book = bookDTO.toBook(this.userDAO);
+        this.bookDAO.persist(book);
+        return new BookDTO(book);
     }
 }
