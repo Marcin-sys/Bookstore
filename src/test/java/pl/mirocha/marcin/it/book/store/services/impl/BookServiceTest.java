@@ -59,7 +59,7 @@ class BookServiceTest extends TestSuite {
 
         Assertions.assertSame(user.get(),book.getCreator());
         Assertions.assertEquals(updateBookId,book.getId());
-        Mockito.verify(this.bookDAO,Mockito.times(1)).update(book); //TODO
+        Mockito.verify(this.bookDAO,Mockito.times(1)).update(book);
     }
 
     @Test

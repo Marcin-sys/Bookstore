@@ -41,19 +41,7 @@ public class BookDTO {
         book.setQuantity(this.getQuantity());
         book.setCreator(userDAO.getById(this.getCreatorId())
                 .orElseThrow(UserNotExistException::new));
-        /*        userDAO.getById(this.getCreatorId()).ifPresentOrElse(
-                book::setCreator,
-                () -> { throw  new UserNotExistException();
-                }
-        );*/
 
-
-/*        Optional<User> userBox = userDAO.getById(this.getCreatorId());
-        if (userBox.isPresent()) {
-            book.setCreator(userBox.get());
-        } else {
-            throw new UserNotExistException();
-        }*/
 
         return book;
     }

@@ -30,12 +30,6 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public Optional<Book> getById(final int id) {
-/*        for (Book book : this.books) {
-            if (book.getId() == id) {
-                return Optional.of(book.clone());
-            }
-        }
-        return Optional.empty();*/
 
         return this.books.stream()
                 .filter(book -> book.getId() == id)
@@ -45,11 +39,6 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public List<Book> getAll() {
-/*        List<Book> result = new ArrayList<>();
-        for (Book book : this.books) {
-            result.add(book.clone());
-        }
-        return result;*/
 
         return this.books.stream()
                 .map(book -> book.clone())
@@ -58,14 +47,6 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public List<Book> getByPattern(final String pattern) {
-/*        List<Book> result = new ArrayList<>();
-        for (Book book : this.books) {
-            if (book.getTitle().toLowerCase().contains(pattern.toLowerCase())
-                    || book.getAuthor().toLowerCase().contains(pattern.toLowerCase())) {
-                result.add(book.clone());
-            }
-        }
-        return result;*/
 
         return this.books.stream()
                 .filter(book -> matchToPattern(book, pattern))
@@ -80,14 +61,6 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public void save(final Book book) {
-/*        for (Book bookFromDb : this.books) {
-            if (bookFromDb.getIsbn().equals(book.getIsbn())) {
-                throw new BookAlreadyExistException("Book with isbn: " + book.getIsbn()
-                        + " already exist");
-            }
-        }
-        book.setId(bookIdSequence.getId());
-        this.books.add(book);*/
 
         Optional<Book> bookFromDB = this.books.stream()
                 .filter(book1 -> book1.getIsbn().equals(book.getIsbn()))
@@ -102,16 +75,7 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public void update(final Book book) {
-/*        for (Book bookFromDb : this.books) {
-            if (bookFromDb.getId() == book.getId()) {
-                bookFromDb.setTitle(book.getTitle());
-                bookFromDb.setAuthor(book.getAuthor());
-                bookFromDb.setIsbn(book.getIsbn());
-                bookFromDb.setPrice(book.getPrice());
-                bookFromDb.setQuantity(book.getQuantity());
-                return;
-            }
-        }*/
+
         this.books.stream()
                 .filter(book1 -> book1.getId() == book.getId())
                 .forEach(book1 -> {
@@ -125,14 +89,7 @@ public class BookRepository implements IBookDAO {
 
     @Override
     public void delete(final int id) {
-/*        Iterator<Book> iterator = this.books.iterator();
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-            if (book.getId() == id) {
-                iterator.remove();
-                break;
-            }
-        }*/
+
         this.books.stream()
                 .filter(book -> book.getId() == id)
                 .forEach(book -> this.books.remove(book));

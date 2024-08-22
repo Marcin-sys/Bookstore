@@ -60,7 +60,6 @@ public class Order implements Cloneable{
     public Order clone() {
         Order order = new Order();
         order.setId(this.id);
-//        order.setTotal(this.total);
         order.total = this.total;
         order.setStatus(this.status);
         order.setUser(this.user.clone());

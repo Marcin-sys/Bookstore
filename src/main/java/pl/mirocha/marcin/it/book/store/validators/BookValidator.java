@@ -6,12 +6,12 @@ import pl.mirocha.marcin.it.book.store.model.Book;
 public class BookValidator {
 
     public static void validateTitle(String title){
-        if (!title.matches("^.+$")) {  //TODO regex
+        if (!title.matches("^.+$")) {
             throw new BookValidationException("Incorrect title");
         }
     }
     public static void validateAuthor(String author){
-        if (!author.matches("^[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?(,(\\ )?[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?)*$")) {  //TODO regex
+        if (!author.matches("^[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?(,(\\ )?[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?)*$")) {
             throw new BookValidationException("Incorrect title");
         }
     }

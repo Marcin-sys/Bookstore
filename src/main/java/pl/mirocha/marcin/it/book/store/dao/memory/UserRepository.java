@@ -27,12 +27,6 @@ public class UserRepository implements IUserDAO {
 
     @Override
     public Optional<User> getById(final int id) {
-/*        for (User user : this.users) {
-            if (user.getId() == id) {
-                return Optional.of(user.clone());
-            }
-        }
-        return Optional.empty();*/
         return this.users.stream()
                 .filter(user -> user.getId() == id)
                 .map(User::clone)
@@ -41,12 +35,7 @@ public class UserRepository implements IUserDAO {
 
     @Override
     public Optional<User> getByLogin(String login) {
-/*        for (User user : this.users) {
-            if (user.getLogin().equals(login)) {
-                return Optional.of(user.clone());
-            }
-        }
-        return Optional.empty();*/
+
         return this.users.stream()
                 .filter(user -> user.getLogin().equals(login))
                 .map(User::clone)
@@ -55,11 +44,6 @@ public class UserRepository implements IUserDAO {
 
     @Override
     public List<User> getAll() {
-/*        List<User> result = new ArrayList<>();
-        for (User user : this.users) {
-            result.add(user.clone());
-        }
-        return result;*/
 
         return this.users.stream()
                 .map(User::clone)
@@ -79,14 +63,7 @@ public class UserRepository implements IUserDAO {
 
     @Override
     public void delete(final int id) {
- /*       Iterator<User> iterator = this.users.iterator();
-        while (iterator.hasNext()) {
-            User user = iterator.next();
-            if (user.getId() == id) {
-                iterator.remove();
-                break;
-            }
-        }*/
+
         this.users.stream()
                 .filter(user -> user.getId() == id)
                 .forEach(this.users::remove);
@@ -94,16 +71,7 @@ public class UserRepository implements IUserDAO {
 
     @Override
     public void update(final User user) {
-/*        Optional<User> userBox = this.getById(user.getId());
-        if (userBox.isEmpty()) {
-            return;
-        }
-        User userFromDB = userBox.get();
-        userFromDB.setName(user.getName());
-        userFromDB.setSurname(user.getSurname());
-        userFromDB.setLogin(user.getLogin());
-        userFromDB.setPassword(user.getPassword());
-        userFromDB.setRole(user.getRole());*/
+
         this.users.stream()
                 .filter(u -> u.getId() == user.getId())
                 .forEach(u -> {

@@ -30,7 +30,6 @@ public class OrderDTO {
         this.status = order.getStatus();
         this.userId =order.getUser().getId();
         this.dateTime=order.getDateTime();
-        //TODO kontruktor positionTDO
         this.positions.addAll(order.getPositions().stream().map(position -> new PositionDTO()).toList());
     }
 
