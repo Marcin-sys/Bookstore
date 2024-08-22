@@ -1,8 +1,8 @@
-# Księgarnia Online
+# Księgarnia Online 📖
 Opis projektu  
 Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownikom przeglądanie, dodawanie i kupowanie książek. Aplikacja została zbudowana przy użyciu Spring Framework i Hibernate, z frontendem i backendem napisanym w Javie. Projekt wykorzystuje REST API do komunikacji między frontendem a backendem.
 
-## Funkcjonalności
+## Funkcjonalności 👍
 
 - Przeglądanie katalogu książek  
 - Dodawanie nowych książek do katalogu  
@@ -10,7 +10,7 @@ Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownik
 - Zarządzanie koszykiem zakupów  
 - Panel administracyjny do zarządzania książkami i zamówieniami  
 
-## Technologie
+## Technologie 🚀
 
 - Java  
 - Spring Framework  
@@ -20,7 +20,7 @@ Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownik
 - JUnit i Mockito (Testy)  
 - Maven (Zarządzanie zależnościami)  
 
-## Skrócona struktura projektu
+## Skrócona struktura projektu 📽️
 Copyksięgarnia-online/  
 │  
 ├── src/  
@@ -50,6 +50,6 @@ Copyksięgarnia-online/
 └── README.md  
 
 
-*Migracja z JDBC do Hibernate  *
-*Projekt początkowo używał JDBC do komunikacji z bazą danych, ale został zmigrowany na Hibernate dla lepszej wydajności i łatwiejszego zarządzania encjami. Stare klasy DAO zostały zastąpione przez repozytoria Hibernate.  *
+Migracja z JDBC do Hibernate  
+Projekt początkowo używał JDBC do komunikacji z bazą danych, ale został zmigrowany na Hibernate dla lepszej wydajności i łatwiejszego zarządzania encjami. Stare klasy DAO zostały zastąpione przez repozytoria Hibernate.  
 
