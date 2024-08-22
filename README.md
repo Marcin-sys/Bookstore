@@ -20,7 +20,7 @@ Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownik
 - JUnit i Mockito (Testy)  
 - Maven (Zarządzanie zależnościami)  
 
-## Skrócona struktura projektu 📽️
+## Struktura projektu 📽️
 Copyksięgarnia-online/  
 │  
 ├── src/  
