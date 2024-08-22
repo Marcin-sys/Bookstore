@@ -4,23 +4,23 @@ Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownik
 
 ## Funkcjonalności
 
-Przeglądanie katalogu książek  
-Dodawanie nowych książek do katalogu  
-Kupowanie książek  
-Zarządzanie koszykiem zakupów  
-Panel administracyjny do zarządzania książkami i zamówieniami  
+- Przeglądanie katalogu książek  
+- Dodawanie nowych książek do katalogu  
+- Kupowanie książek  
+- Zarządzanie koszykiem zakupów  
+- Panel administracyjny do zarządzania książkami i zamówieniami  
 
-### Technologie
+## Technologie
 
-Java  
-Spring Framework  
-Hibernate  
-REST API  
-HTML/CSS/JavaScript (Frontend)  
-JUnit i Mockito (Testy)  
-Maven (Zarządzanie zależnościami)  
+- Java  
+- Spring Framework  
+- Hibernate  
+- REST API  
+- HTML/CSS/JavaScript (Frontend)  
+- JUnit i Mockito (Testy)  
+- Maven (Zarządzanie zależnościami)  
 
-#### Skrócona struktura projektu
+## Skrócona struktura projektu
 Copyksięgarnia-online/  
 │  
 ├── src/  
@@ -50,6 +50,6 @@ Copyksięgarnia-online/
 └── README.md  
 
 
-Migracja z JDBC do Hibernate  
-Projekt początkowo używał JDBC do komunikacji z bazą danych, ale został zmigrowany na Hibernate dla lepszej wydajności i łatwiejszego zarządzania encjami. Stare klasy DAO zostały zastąpione przez repozytoria Hibernate.  
+*Migracja z JDBC do Hibernate  *
+*Projekt początkowo używał JDBC do komunikacji z bazą danych, ale został zmigrowany na Hibernate dla lepszej wydajności i łatwiejszego zarządzania encjami. Stare klasy DAO zostały zastąpione przez repozytoria Hibernate.  *
 
