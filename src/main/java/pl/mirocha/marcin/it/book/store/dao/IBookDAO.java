@@ -7,20 +7,14 @@ import java.util.Optional;
 
 public interface IBookDAO {
     Optional<Book> getById(int id);
-
     List<Book> getAll();
-
     List<Book> getByPattern(String pattern);
-
     @Deprecated
     void save(Book book);
-
     @Deprecated
     void update(Book book);
-
     default void persist(Book book) {
         throw new UnsupportedOperationException();
     }
-
     void delete(int id);
 }

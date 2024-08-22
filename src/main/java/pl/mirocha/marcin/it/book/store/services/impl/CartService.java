@@ -29,7 +29,7 @@ public class CartService implements ICartService {
 
     @Override
     public void addBook(final int bookId) {
-        final Optional<Book> bookBox =this.bookDAO.getById(bookId);
+        final Optional<Book> bookBox = this.bookDAO.getById(bookId);
         if(bookBox.isEmpty()){
             return;
         }

@@ -1,24 +1,23 @@
 package pl.mirocha.marcin.it.book.store.validators;
 
 import pl.mirocha.marcin.it.book.store.exceptions.BookValidationException;
-import pl.mirocha.marcin.it.book.store.exceptions.UserValidationException;
 import pl.mirocha.marcin.it.book.store.model.Book;
 
 public class BookValidator {
 
     public static void validateTitle(String title){
         if (!title.matches("^.+$")) {  //TODO regex
-            throw new UserValidationException("Incorrect title");
+            throw new BookValidationException("Incorrect title");
         }
     }
     public static void validateAuthor(String author){
         if (!author.matches("^[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?(,(\\ )?[A-Z][a-z]+\\ [A-Z][a-z]+([-\\ ][A-Z][a-z]+)?)*$")) {  //TODO regex
-            throw new UserValidationException("Incorrect title");
+            throw new BookValidationException("Incorrect title");
         }
     }
     public static void validateIsbn(String isbn){
-        if (!isbn.matches("^(978|979)-[0-9]{2}-[0-9]{2,6}-[0-9]{1,5}-[0-9]$")) {  //TODO regex
-            throw new UserValidationException("Incorrect title");
+        if (!isbn.matches("^(978|979)-[0-9]{2}-[0-9]{2,6}-[0-9]{1,5}-[0-9]$")) {
+            throw new BookValidationException("Incorrect title");
         }
     }
 

@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @ToString
 @Builder
+@EqualsAndHashCode
 @Entity(name = "tuser")
 public class User {
     @Id
@@ -27,7 +28,7 @@ public class User {
     private Role role;
     @Transient//nie używaj tego pola do bazy danych
     private final Set<Position> cart = new HashSet<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Order> orders = new HashSet<>();
 
     public User(int id) {
@@ -45,7 +46,8 @@ public class User {
 
     public double total(){
         double sum = this.cart.stream()
-                    .mapToDouble(i -> i.getBook().getPrice() * i.getQuantity())
+                    .mapToDouble(i -> i.getBook().getPrice()
+                            * i.getQuantity())
                     .sum();
         return (int) (sum *100)/100.0;
     }

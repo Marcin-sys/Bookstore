@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PositionDAO implements IPositionDAO {
+
 
     private final Connection connection;
     private final IBookDAO iBookDAO;
@@ -84,5 +86,10 @@ public class PositionDAO implements IPositionDAO {
         } catch (SQLException e) {
             System.out.println("delete position error");
         }
+    }
+
+    @Override
+    public Optional<Position> getById(int id) {
+        return Optional.empty();
     }
 }

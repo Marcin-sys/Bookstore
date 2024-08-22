@@ -58,6 +58,7 @@ public class Book implements Cloneable {
 //        book.setPrice(this.price);
         book.price = this.price;
         book.setQuantity(this.quantity);
+        book.setCreator(this.creator);
         return book;
     }
 

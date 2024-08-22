@@ -12,6 +12,7 @@ import java.util.Optional;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 public class BookDTO {
     private int id;
     private String title;
@@ -38,15 +39,14 @@ public class BookDTO {
         book.setIsbn(this.getIsbn());
         book.setPrice(this.getPrice());
         book.setQuantity(this.getQuantity());
-
-/*        userDAO.getById(this.getCreatorId()).ifPresentOrElse(
+        book.setCreator(userDAO.getById(this.getCreatorId())
+                .orElseThrow(UserNotExistException::new));
+        /*        userDAO.getById(this.getCreatorId()).ifPresentOrElse(
                 book::setCreator,
                 () -> { throw  new UserNotExistException();
                 }
         );*/
 
-        book.setCreator(userDAO.getById(this.getCreatorId())
-                .orElseThrow(UserNotExistException::new));
 
 /*        Optional<User> userBox = userDAO.getById(this.getCreatorId());
         if (userBox.isPresent()) {
