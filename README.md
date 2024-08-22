@@ -1,5 +1,5 @@
 # Księgarnia Online
-Opis projektu
+Opis projektu  
 Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownikom przeglądanie, dodawanie i kupowanie książek. Aplikacja została zbudowana przy użyciu Spring Framework i Hibernate, z frontendem i backendem napisanym w Javie. Projekt wykorzystuje REST API do komunikacji między frontendem a backendem.
 
 ## Funkcjonalności
