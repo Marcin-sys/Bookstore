@@ -1,27 +1,30 @@
-# Księgarnia Online 📖
-Opis projektu  
-Ten projekt to aplikacja webowa księgarni online, która umożliwia użytkownikom przeglądanie, dodawanie i kupowanie książek. Aplikacja została zbudowana przy użyciu Spring Framework i Hibernate, z frontendem i backendem napisanym w Javie. Projekt wykorzystuje REST API do komunikacji między frontendem a backendem.
+# Online Bookstore 📖
+Project Description
+This project is an online bookstore web application that allows users to browse,
+add, and purchase books. The application was built using the Spring Framework 
+and Hibernate, with frontend and backend written in Java. 
+The project uses REST API for communication between the frontend and backend.
 
-## Funkcjonalności 👍
+## Features  👍
 
-- Przeglądanie katalogu książek  
-- Dodawanie nowych książek do katalogu  
-- Kupowanie książek  
-- Zarządzanie koszykiem zakupów  
-- Panel administracyjny do zarządzania książkami i zamówieniami  
+- Browsing book catalog  
+- Adding new books to the catalog  
+- Purchasing books  
+- Managing shopping cart  
+- Admin panel for managing books and orders  
 
-## Technologie 🚀
+## Technologies  🚀
 
 - Java  
 - Spring Framework  
 - Hibernate  
 - REST API  
 - HTML/CSS/JavaScript (Frontend)  
-- JUnit i Mockito (Testy)  
-- Maven (Zarządzanie zależnościami)  
+- JUnit and Mockito (Testing)  
+- Maven (Dependency  Management)  
 
-## Struktura projektu 📽️
-Copyksięgarnia-online/  
+## Project Structure 📽️
+bookstore-online/  
 │  
 ├── src/  
 │   ├── main/  
@@ -50,6 +53,8 @@ Copyksięgarnia-online/
 └── README.md  
 
 
-Migracja z JDBC do Hibernate  
-Projekt początkowo używał JDBC do komunikacji z bazą danych, ale został zmigrowany na Hibernate dla lepszej wydajności i łatwiejszego zarządzania encjami. Stare klasy DAO zostały zastąpione przez repozytoria Hibernate.  
-
+Migration from JDBC to Hibernate
+The project initially used JDBC for database communication, 
+but was migrated to Hibernate for better performance and
+easier entity management. Old DAO classes were replaced 
+with Hibernate repositories.
