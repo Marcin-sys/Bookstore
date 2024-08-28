@@ -4,7 +4,7 @@ This project is an online bookstore web application that allows users to browse,
 add, and purchase books. The application was built using the Spring Framework 
 and Hibernate, with frontend and backend written in Java. 
 The project uses REST API for communication between the frontend and backend.
-
+ 
 ## Features  👍
 
 - Browsing book catalog  
